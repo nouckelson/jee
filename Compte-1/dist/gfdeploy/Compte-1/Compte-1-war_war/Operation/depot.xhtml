@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+        
+     <div class="container">
+                Faire un depot sur votre compte
+                <f:view>
+                <fieldset class="fieldset">
+
+                    <h:form>
+                            <h:outputLabel value="Montant:" for="montant" />
+                            <h:inputText class="form-control" id="montant" value="#{operationMBean.op.montant}" title="Montant" />
+                            <h:outputLabel value="Type operation:" for="type_operation" />
+                            <h:inputText class="form-control" id="type_operation" value="#{operationMBean.op.type_operation}" title="Type_operation" />
+                            <h:outputLabel value="Compte Owner:" for="compteOwner" />
+                            <h:selectOneMenu class="form-control" id="compteOwner" value="#{operationMBean.op.compteOwner}"
+                                              converter="#{operationMBean.compteConverter}">
+                                <!-- TODO: update below reference to list of available items-->
+                                <f:selectItems value="#{compteMBean.comptes}" var="compte"
+                                               itemValue="#{compte}" itemLabel="#{compte.numero} #{compte.type_compte}"/>
+                            </h:selectOneMenu>
+                            <br/>
+                            <h:commandButton class="btn btn-primary pull-right" value="#{bundle.Save}" action="#{operationMBean.add()}"></h:commandButton>
+                    </h:form>
+                </fieldset>
+                </f:view>
+     </div>
+           
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+        
+     <div class="container">
+         
+         
+         <f:view>
+
+
+             <h:form>
+                 <h:link value="#{bundle.CreateClientTitle}" outcome="add" class="btn btn-primary"></h:link>
+                 <h:dataTable value="#{clientMBean.showClient()}" var="c" class="table tripled">
+                     <h:column>
+                         <f:facet name="header">
+                             <h:outputText value="Id"/>
+                         </f:facet>
+                         <h:outputText value="#{c.id}"/>
+                     </h:column>
+                   <h:column>
+                         <f:facet name="header">
+                             <h:outputText value="NIP"/>
+                         </f:facet>
+                       <h:outputText value="#{c.NIP}"/>
+                     </h:column>
+                     <h:column>
+                         <f:facet name="header">
+                             <h:outputText value="Nom"/>
+                         </f:facet>
+                         <h:outputText value="#{c.nom}"/>
+                     </h:column>
+                     <h:column>
+                         <f:facet name="header">
+                             <h:outputText value="Prenom"/>
+                         </f:facet>
+                         <h:outputText value="#{c.prenom}"/>
+                     </h:column>
+                     <h:column>
+                         <f:facet name="header">
+                             <h:outputText value="Phone"/>
+                         </f:facet>
+                         <h:outputText value="#{c.phone}"/>
+                     </h:column>
+                   <h:column>
+                         <f:facet name="header">
+                             <h:outputText value="Role"/>
+                         </f:facet>
+                       <h:outputText value="#{c.role}"/>
+                     </h:column>
+                     <h:column>
+                         <f:facet name="header">
+                             <h:outputText value="Adresse"/>
+                         </f:facet>
+                         <h:outputText value="#{c.adresse}"/>
+                     </h:column>
+                    <h:column>
+                         <f:facet name="header">Option</f:facet>
+                         <h:commandLink action="#{clientMBean.view(c)}" value=""  class="btn-xs btn-primary"><i class="glyphicon glyphicon-eye-open"></i></h:commandLink> |
+                         <h:commandLink action="#{clientMBean.delete(c)}" value="" class="btn-xs btn-danger" onclick="return confirm('Are you sure')"><i class="glyphicon glyphicon-trash"></i></h:commandLink> | 
+                         <h:commandLink action="#{clientMBean.edit(c)}" value="" class="btn-xs btn-success" ><i class="glyphicon glyphicon-edit"></i></h:commandLink>
+                     </h:column>
+                     
+                 </h:dataTable>
+             </h:form>
+         </f:view>
+     </div>
+        </ui:define>
+    </ui:composition>
+
+</html>

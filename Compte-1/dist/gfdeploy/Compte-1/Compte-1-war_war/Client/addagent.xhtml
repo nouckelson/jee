@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateAgentTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+        
+     <div class="container">
+         <f:view>
+            <fieldset class="fieldset">
+                <h:form>
+                     <h:outputLabel value="NIP:" for="nip" />
+                     <h:inputText class="form-control md-col-2 " id="nip" value="#{clientMBean.c.NIP}" title="NIP" />
+                     <h:outputLabel value="Nom:" for="nom" />
+                     <h:inputText class="form-control md-col-2 " id="nom" value="#{clientMBean.c.nom}" title="Nom" />
+                     <h:outputLabel value="Prenom:" for="prenom" />
+                     <h:inputText class="form-control" id="prenom" value="#{clientMBean.c.prenom}" title="Prenom" />
+                     <h:outputLabel value="Phone:" for="phone" />
+                     <h:inputText class="form-control" id="phone" value="#{clientMBean.c.phone}" title="Phone" />
+                     <h:outputLabel value="Email:" for="email" />
+                     <h:inputText class="form-control" id="email" value="#{clientMBean.c.email}" title="Email" />
+                     <h:outputLabel value="Password:" for="password" />
+                     <h:inputSecret class="form-control" id="password" value="#{clientMBean.c.password}" title="Password" />
+                     <h:outputLabel value="Adresse:" for="adresse" />
+                     <h:inputText class="form-control" id="adresse" value="#{clientMBean.c.adresse}" title="Adresse" />
+                     <h:outputLabel value="Role" for="role" />
+                     <h:selectOneMenu class="form-control" value="#{clientMBean.c.role}"> 
+                        <f:selectItem itemValue = "AGENT" itemLabel = "AGENT" /> 
+                     </h:selectOneMenu> 	
+                     <br/>
+                     <h:commandButton class="btn btn-primary pull-right" value="#{bundle.Save}" action="#{clientMBean.add()}"></h:commandButton>
+                </h:form>
+            </fieldset>
+             <hr/>
+        </f:view>
+  </div>
+        </ui:define>
+    </ui:composition>
+
+</html>
+

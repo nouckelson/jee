@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+        
+     <div class="container">
+         
+         
+         <f:view>
+
+
+             <h:form>
+                <div class="row">
+                    <div class="alert">#{operationMBean.message}</div>
+                 <div class="col-md-4">
+                     <div class="input-group">
+                         <h:inputText value="#{operationMBean.search}" binding="#{operationMBean.composantSerch}" class="form-control" title="Entre le numero du compte"/>
+                        <h:commandLink class="input-group-addon"  action="#{operationMBean.searchBy()}"  ><i class="glyphicon glyphicon-search"></i></h:commandLink>
+                    </div>
+                </div>
+                            
+                <div class="col-md-12 ">
+                    <span class="pull-left badge">#{operationMBean.client.nom} #{operationMBean.client.prenom}</span><br></br>
+                    <span class="pull-left badge">#{operationMBean.client.NIP}</span><br></br>
+                    <span class="pull-left badge">#{operationMBean.client.phone}</span><br></br>
+                    <span class="pull-left badge col-md-12 ">#{operationMBean.client.adresse}</span>
+                </div>
+            </div>
+                 <h:dataTable value="#{operationMBean.compte}" var="cp" class="table tripled">
+                     <h:column>
+                         <f:facet name="header">
+                             <h:outputText value="Numero compte"/>
+                         </f:facet>
+                         <h:outputText value="#{cp.numero}"/>
+                     </h:column>
+                     <h:column>
+                         <f:facet name="header">
+                             <h:outputText value="Type compte"/>
+                         </f:facet>
+                         <h:outputText value="#{cp.type_compte}"/>
+                     </h:column>
+                     <h:column>
+                         <f:facet name="header">
+                             <h:outputText value="Solde"/>
+                         </f:facet>
+                         <h:outputText value="#{cp.sold}"/>
+                     </h:column>
+                                 <h:column>
+                         <f:facet name="header">
+                             <h:outputText value="Operation"/>
+                         </f:facet>
+                                <h:commandLink action="#{operationMBean.depot(cp)}"><i class="glyphicon glyphicon-piggy-bank btn-primary btn-sm" title="DEPOT"></i></h:commandLink> | 
+                                <h:commandLink action="#{operationMBean.retait(cp)}"><i class="glyphicon glyphicon-download-alt btn-info btn-sm" title="RETRAIT"></i></h:commandLink> | 
+                                <h:commandLink action="#{operationMBean.virement(cp)}"><i class="glyphicon glyphicon-hand-right btn-info btn-sm" title="VIREMENT"></i></h:commandLink>
+                     </h:column>
+                </h:dataTable>
+             </h:form>
+         </f:view>
+         <div class="col-md-12 alert alert-primary">Legende</div>
+         <div class="col-md-4">DEPOT <i class="glyphicon glyphicon-piggy-bank btn-primary btn-sm"></i></div>
+         <div class="col-md-4">RETRAIT <i class="glyphicon glyphicon-download-alt btn-primary btn-sm"></i></div>
+         <div class="col-md-4">VIREMENT <i class="glyphicon glyphicon-hand-right btn-primary btn-sm"></i></div>
+     </div>
+        </ui:define>
+    </ui:composition>
+
+</html>

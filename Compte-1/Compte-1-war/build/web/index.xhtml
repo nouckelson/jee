@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <!-- Bootstrap core CSS -->
+        <h:outputStylesheet name="css/bootstrap.min.css"/>
+        <h:outputStylesheet name="fonts/css/font-awesome.min.css"/>
+        <h:outputStylesheet name="css/login.css"/>
+        <h:outputScript name="js/jquery.min.js"/> 
+		<title>Gestiion Bancaire</title>
+	</h:head>
+	<h:body>
+            
+            
+            
+		<div class="container">
+			<div class="row main">
+				<div class="panel-heading">
+	               <div class="panel-title text-center">
+	               		<h1 class="title">Banque N2A</h1>
+	               		<hr />
+	               	</div>
+	            </div> 
+				<div class="main-login main-center">
+                                    
+                                    <f:view>
+                                        <i class="alert">#{userMBean.message}</i>
+
+                                        <h:form class="form-horizontal">
+                                            <div class="form-group">
+                                                <h:outputLabel value="Email:" for="email" class="cols-sm-2 control-label" />
+                                                <div class="cols-sm-10">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                                                        <h:inputText id="email" value="#{userMBean.client.email}" title="Email" required="true" requiredMessage="The Email field is required."/>
+                                                    </div>
+                                               </div>
+					</div>
+                                        <div class="form-group">
+                                            <h:outputLabel value="Password:" for="password" />
+                                                <div class="cols-sm-10">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                                        <h:inputSecret  id="password" value="#{userMBean.client.password}" title="Password" required="true" requiredMessage="The Password field is required."/>
+                                                    </div>
+                                               </div>
+					</div>
+                                       <div class="form-group">
+                                                <div class="cols-sm-10">
+                                                    <h:commandButton value="Login" action="#{userMBean.authentifier()}" class="btn btn-primary btn-lg btn-block login-button"></h:commandButton>
+                                               </div>
+					</div>
+                                            
+                                        </h:form>
+                                    </f:view>
+				</div>
+			</div>
+		</div>
+
+            <h:outputScript name="js/bootstrap.min.js"/>
+	 </h:body>
+</html>
+

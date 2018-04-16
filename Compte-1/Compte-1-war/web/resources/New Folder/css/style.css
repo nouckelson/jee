@@ -1,0 +1,21 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 17, 2018, 9:48:58 PM
+    Author     : dtic
+*/
+body {
+  min-height: 2000px;
+  padding-top: 70px;
+}
+.fieldset{
+    width: 100%;
+    margin: 0 auto;
+    border: 1px solid activecaption;
+    padding: 10px;
+    border-radius: 20px;
+}
+.legend{border:1px solid activecaption;color:#1b6d85; padding: 10px;}

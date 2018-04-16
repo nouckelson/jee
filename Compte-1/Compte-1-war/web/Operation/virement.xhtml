@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+        
+            <div class="container">&nbsp;
+                <f:view>
+                    <div class="alert">#{operationMBean.message}</div>
+                <fieldset class="fieldset">
+
+                    <h:form>
+                    <div class="col-md-4">
+                     <div class="input-group">
+                         <h:inputText value="#{operationMBean.searchCompte}" binding="#{operationMBean.composantSerchCompte}" class="form-control" title="Entre le numero du compte"/>
+                        <h:commandLink class="input-group-addon"  action="#{operationMBean.searchCompteVirment()}" ><i class="glyphicon glyphicon-search"></i></h:commandLink>
+                    </div>
+                </div>
+                        <div class="col-md-12 alert-info">
+                                <i class="badge"> #{operationMBean.op.type_operation}</i> sur un compte tiers
+                        </div>
+              <div class="col-md-12">
+                            <h:outputLabel value="Montant Actuel:" for="montant" />
+                            <h:inputText class="form-control"  value="#{operationMBean.compte.sold}"  readonly="true" />
+                            <h:outputLabel value="Montant:" for="montant" />
+                            <h:inputText class="form-control" id="montant" value="#{operationMBean.op.montant}" title="Montant" />
+                            <h:outputLabel value="Type operation:" for="type_operation" />
+                            <h:inputText  class="form-control" id="type_operation" value="#{operationMBean.op.type_operation}" readonly="true"/>
+                            <h:outputLabel value="Compte Owner:" for="compteOwner" />                          
+                            <h:inputText class="form-control"  value="#{operationMBean.compte.numero}" readonly="true"/>
+                            <h:outputLabel value="Compte Tiers:" for="compteVirement" />                          
+                            <h:inputText class="form-control"  value="#{operationMBean.compteTwo.numero} / #{operationMBean.clientTwo.nom} #{operationMBean.clientTwo.prenom}" readonly="true"/>
+                            <br/>
+                            <h:commandButton class="btn btn-primary pull-right" value="#{bundle.Save}" action="#{operationMBean.add()}"></h:commandButton>
+                            </div>
+                    </h:form>
+                </fieldset>
+                </f:view>
+     </div>
+           
+        </ui:define>
+    </ui:composition>
+
+</html>

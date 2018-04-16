@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+        <div class="container">
+                    <f:view> 
+                        <div class="row top_tiles">
+                            <c:if test="#{userMBean.client.role=='AGENT'}">
+                            <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <div class="tile-stats">
+                                    <div class="icon"><i class="fa fa-group"></i>
+                                    </div>
+                                    <div class="count">#{clientMBean.showClient().size()}</div>
+
+                                    <h3>Client</h3>
+                                    <p>&nbsp;</p>
+                                </div>
+                            </div>
+                            <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <div class="tile-stats">
+                                    <div class="icon"><i class="fa fa-credit-card"></i>
+                                    </div>
+                                    <div class="count">#{compteMBean.comptes.size()}</div>
+
+                                    <h3>Comptes</h3>
+                                    <p>&nbsp;</p>
+                                </div>
+                            </div>
+                            </c:if>
+                            <c:otherwise>
+                            <div class="animated flipInY col-lg-12 col-md-2 col-sm-12 col-xs-12">
+                                <div class="tile-stats">
+                                    <div class="icon"><i class="fa fa-credit-card"></i>
+                                    </div>
+                                    <div class="count">N2A vous souhite bienvenu</div>
+                                </div>
+                            </div>
+                            </c:otherwise>
+                         
+                        </div>
+                    </f:view>
+        </div>
+        </ui:define>
+    </ui:composition>
+
+</html>
+

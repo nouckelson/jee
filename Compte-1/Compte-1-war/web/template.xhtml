@@ -1,0 +1,239 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Gestion compte bancaire</title>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <!-- Bootstrap core CSS -->
+
+        <h:outputStylesheet name="css/bootstrap.min.css"/>
+
+        <h:outputStylesheet name="fonts/css/font-awesome.min.css"/>
+        <h:outputStylesheet name="css/animate.min.css"/>
+
+        <!-- Custom styling plus plugins -->
+        <h:outputStylesheet name="css/custom.css"/>
+        <h:outputStylesheet name="css/style.css"/>
+        <h:outputStylesheet name="css/maps/jquery-jvectormap-2.0.3.css"/>
+        <h:outputStylesheet name="css/icheck/flat/green.css"/>
+        <h:outputStylesheet name="css/floatexamples.css"/>
+        <h:outputScript name="js/jquery.min.js"/>  
+    </h:head>
+    <h:body class="nav-md">
+
+        <div class="container body">
+
+
+            <div class="main_container">
+
+                <div class="col-md-3 left_col">
+                    <div class="left_col scroll-view">
+
+                        <div class="navbar nav_title" style="border: 0;">
+                            <a href="#" class="site_title">
+                                <i class="fa fa-money" style="color:#FFFFF"></i>
+                                <i class="fa fa-dollar" style="color:#FFFFF"></i>
+                                <span> Banque N2A</span></a>
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <br />
+
+                        <!-- sidebar menu -->
+                        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+
+                            <div class="menu_section">
+                                <h3>Administration</h3>
+                                
+                                <f:view>
+                                <ul class="nav side-menu">
+                                   <c:if test="#{userMBean.client.role=='AGENT'}">
+                                    <li><a><i class="fa fa-home"></i> Compte <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu" style="display: none">
+                                            <li>
+                                                <!--<h:link value="Creation Compte" outcome="Compte/index" />-->
+                                                <a href="/Compte-1-war/faces/Client/index.xhtml">Creation Client</a>
+                                            </li>
+                                            <li><a href="/Compte-1-war/faces/Compte/index.xhtml">Asignation Compte Client</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    </c:if>
+                                    <li><a><i class="fa fa-edit"></i> Transaction <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu" style="display: none">
+                                               
+                                            <c:if test="#{userMBean.client.role=='AGENT'}">
+                                                 <li><a href="/Compte-1-war/faces/Operation/index.xhtml">Virement</a></li>
+                                                <li><a href="/Compte-1-war/faces/Operation/index.xhtml">Depot</a></li>
+                                                <li><a href="/Compte-1-war/faces/Operation/index.xhtml">Debiter un compte</a></li>
+                                            </c:if>
+                                             <c:otherwise>
+                                                <li><a href="/Compte-1-war/faces/Compte/personnel.xhtml">Virement</a></li>
+                                            </c:otherwise>
+                                        </ul>
+                                    </li>
+                                    <li><a><i class="fa fa-desktop"></i> Rapport <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu" style="display: none">
+                                            <c:if test="#{userMBean.client.role=='AGENT'}">
+                                                <li><a href="/Compte-1-war/faces/Compte/liste.xhtml">Etats comptes</a></li>
+                                            </c:if>
+                                            <c:otherwise>
+                                                <li><a href="/Compte-1-war/faces/Compte/rapport.xhtml">Etats comptes</a></li>
+                                            </c:otherwise>
+                                            
+                                        </ul>
+                                    </li>
+                                    <c:if test="#{userMBean.client.role=='AGENT'}">
+                                    <li><a><i class="fa fa-user"></i> User <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu" style="display: none">
+                                            <li><a href="/Compte-1-war/faces/Client/addagent.xhtml">Nouveau utilisateur</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    </c:if>
+                                </ul>
+                                    </f:view>
+                            </div>
+
+                        </div>
+                        <!-- /sidebar menu -->
+
+                        <!-- /menu footer buttons -->
+                        <div class="sidebar-footer hidden-small">
+                            <a data-toggle="tooltip" data-placement="top" title="Settings">
+                                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                            </a>
+                            <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                            </a>
+                            <a data-toggle="tooltip" data-placement="top" title="Lock">
+                                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                            </a>
+                            <a data-toggle="tooltip" data-placement="top" title="Logout">
+                                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                            </a>
+                        </div>
+                        <!-- /menu footer buttons -->
+                    </div>
+                </div>
+
+                <!-- top navigation -->
+                <div class="top_nav">
+
+                    <div class="nav_menu">
+                        <nav class="" role="navigation">
+                            <div class="nav toggle">
+                                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                            </div>
+
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="">
+                                    <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa fa-user"></i>  #{userMBean.client.getNom()} #{userMBean.client.getPrenom()}
+                                        <span class=" fa fa-angle-down"></span>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
+                                        <li><a href="javascript:;">  Profile</a>
+                                        </li>
+                                        <li>
+                                            <a href="/Compte-1-war"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                            </ul>
+                        </nav>
+                    </div>
+
+                </div>
+                <!-- /top navigation -->
+
+
+                <!-- page content -->
+                <div class="right_col" role="main">
+
+                    <br />
+                    <div class="">
+        <h1>
+            <ui:insert name="title">Default Title</ui:insert>
+        </h1>
+        <p>
+            <ui:insert name="body">Default Body</ui:insert>
+        </p>
+
+                    </div>
+
+                    <br/> 
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/> 
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <!-- footer content -->
+                    <footer>
+                        <div class="pull-right">
+                            <a> Banque N2A</a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </footer>
+                    <!-- /footer content -->
+
+                </div>
+                <!-- /page content -->
+            </div>
+
+        </div>
+        <h:outputScript name="js/bootstrap.min.js"/>
+        <!-- bootstrap progress js -->
+        <h:outputScript name="js/progressbar/bootstrap-progressbar.min.js"/>
+        <!-- icheck -->
+        <h:outputScript name="js/icheck/icheck.min.js"/>
+        <!-- daterangepicker -->
+        <h:outputScript name="js/moment/moment.min.js"/>
+        <h:outputScript name="js/datepicker/daterangepicker.js"/>
+        <!-- chart js -->
+        <h:outputScript name="js/chartjs/chart.min.js"/>
+        <!-- sparkline -->
+        <h:outputScript name="js/sparkline/jquery.sparkline.min.js"/>
+        <h:outputScript name="js/custom.js"/>
+        <!-- flot js -->
+        <h:outputScript name="js/flot/jquery.flot.js"/>
+        <h:outputScript name="js/flot/jquery.flot.pie.js"/>
+        <h:outputScript name="js/flot/jquery.flot.orderBars.js"/>
+        <h:outputScript name="js/flot/jquery.flot.time.min.js"/>
+        <h:outputScript name="js/flot/date.js"/>
+        <h:outputScript name="js/flot/jquery.flot.spline.js"/>
+        <h:outputScript name="js/flot/jquery.flot.stack.js"/>
+        <h:outputScript name="js/flot/curvedLines.js"/>
+        <h:outputScript name="js/flot/jquery.flot.resize.js"/>
+        <!-- pace -->
+        <h:outputScript name="js/pace/pace.min.js"/>
+    </h:body>
+
+
+
+
+</html>
+
+

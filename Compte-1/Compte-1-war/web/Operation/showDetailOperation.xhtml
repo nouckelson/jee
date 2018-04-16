@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <div class="container">
+                <f:view>
+                    <h:form>
+                        <h1><h:outputText value="Historie du compte"/></h1>
+                        <h:dataTable class="table tripled" value="#{operationMBean.operationParCompte}" var="item">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Montant"/>
+                                </f:facet>
+                                <h:outputText value="#{item.montant}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Compte Virement"/>
+                                </f:facet>
+                                <h:outputText value="#{item.compteVirement.numero}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Date operation"/>
+                                </f:facet>
+                                <h:outputText value="#{item.date_operation}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Type d'operation"/>
+                                </f:facet>
+                                <h:outputText value="#{item.type_operation}"/>
+                            </h:column>
+                        </h:dataTable>
+                    </h:form>
+                </f:view>
+
+            </div>
+        </ui:define>
+    </ui:composition>
+
+</html>
+
